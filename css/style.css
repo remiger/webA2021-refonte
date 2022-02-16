@@ -1,0 +1,896 @@
+@charset "utf-8";
+
+/*--------------------------------------------------------------
+Mise en forme générale
+--------------------------------------------------------------*/
+
+/* ------ HTML ------ */
+/* Scroll behavior smooth pour que la page glisse jusquau href */
+html{
+    scroll-behavior: smooth;
+}
+
+/* ------ BODY ------ */
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------ COULEURS ET POLICES DE BASE ------ */
+/* Police de base appliquee partout */
+*{
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Couleur des h2 de base */
+h2{
+    font-size: 3rem;
+    color: #141414;
+}
+
+/* ------ AJUSTEMENT DES DIV DE LA PAGE DACCUEIL ------ */
+/* --- SECTION ALERTE COVID --- */
+.alerte{
+    display: flex;
+    justify-content: center;
+    flex-grow: 0;
+    background-color: #E1E1E1;
+}
+
+.alerte span{
+    padding: 2px;
+    background-color: #D5D5D5;
+    border: 1px solid #5A5A5A;
+    margin: 5px 0;
+}
+
+.alerte span:hover{
+    cursor: pointer;
+}
+
+/* --- SECTION MENU NAV --- */
+/* Le menu de navigation reste quand on defile la page */
+nav{
+    position: sticky;
+    top: -5px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #141414;
+}
+
+nav div{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* div:nth-of-type(2) fait reference au titre Hotel Residence Voyageur */
+nav div:nth-of-type(2){
+    width: 70%;
+    flex-direction: column;
+}
+
+nav div:nth-of-type(2) span:first-of-type{
+    margin: 0;
+    padding-top: 15px;
+}
+
+nav div:nth-of-type(2) span:last-of-type{
+    margin: 0;
+    padding: 10px 0;
+}
+
+/* nav span pour le titre de l'hotel */
+nav span{
+    font-size: 2rem;
+    font-weight: bolder;
+    color: white;
+    margin: 1.5rem 0;
+    font-family: 'Great Vibes', cursive;
+    text-align: center;
+}
+
+nav span:hover{
+    cursor: pointer;
+}
+
+/* les differentes sections de la page web */
+nav a{
+    text-decoration: none;
+    color: #E1E1E1;
+    font-size: 1.4rem;
+}
+
+nav a:hover{
+    color: #FFFFFF;
+}
+
+/* --- SECTION ACCUEIL --- */
+/* le conteneur principal */
+.images{
+    display: flex;
+    width: auto;
+    height: 90vh;
+    justify-content: center;
+    align-items: flex-end;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: 0.3s;
+}
+
+/* les bouttons pour changer les images */
+.bouttons-images{
+    display: flex;
+    width: 70%;
+    height: 20%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.bouttons-images button{
+    height: 40px;
+    width: 40px;
+    opacity: 70%;
+    border-radius: 50%;
+    border: 1px solid #707070;
+}
+
+.bouttons-images button:hover{
+    cursor: pointer;
+}
+
+.actif{
+    background-color: #1B1B1B;
+}
+
+
+/* --- SECTION OU SE TROUVE NOTRE HOTEL --- */
+/* conteneur principal */
+.location{
+    display: flex;
+    flex-direction: column;
+}
+
+.location h2, .location h3, .location .metro{
+    margin-left: 5vw;
+}
+
+.location h3, .location h4{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+}
+
+/* conteneur pour les infos du metro */
+.location div.metro{
+    display: flex;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.metro h4{
+    margin: 0;
+    font-weight: normal;
+    margin-right: 10px;
+}
+
+/* carte google maps */
+#map {
+    align-self: center;
+    height: 600px;
+    width: 90%;
+}
+
+/* --- SECTION RESERVATION --- */
+/* conteneur principal */
+.reservation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #141414;
+    color: #707070;
+}
+
+.reservation ul li, .reservation div.bouttons-reservation span{
+    font-family: 'Roboto', sans-serif;
+}
+
+.reservation h2{
+    color: #F3F3F3;
+    align-self: flex-start;
+    margin-left: 5%;
+}
+
+/* conteneur qui contient les calendriers et le choix du nb de personnes */
+.gris-pale{
+    width: 90%;
+    background-color: #F3F3F3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+}
+
+/* les conteneurs a linterieur du conteneur gris pale */
+.les-calendriers, .bouttons-reservation{
+    width: 90%;
+}
+
+/* conteneur pour les deux calendriers */
+.les-calendriers{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5% 0;
+    background-color: #E1E1E1;
+}
+
+/* chaque calendrier individuel */
+.un-calendrier{
+    width: 40%;
+    font-size: 1.2rem;
+}
+
+/* --- Ajuster le CSS des calendriers --- */
+.mois, .jours-semaine{
+    margin-block-end: 0;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+
+.mois{
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.jours-semaine{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    list-style-type: none;
+    font-weight: 700;
+}
+
+.jours li{
+    list-style-type: none;
+    text-align: center;
+    padding: 0.75vw;
+}
+
+.jours li, .mois li:first-of-type, .mois li:last-of-type{
+    cursor: pointer;
+}
+
+.jours{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.aujourdhui, .date-reservation{
+    border-radius: 50%;
+}
+
+.date-reservation{
+    background-color: white;
+    border: 1px solid #B9B9B9;
+}
+
+.aujourdhui{
+    background-color: #1B1B1B;
+    border: 1px solid #707070;
+}
+
+.cache{
+    color: #E1E1E1;
+}
+
+.mois li.cache, .jours li.cache{
+    cursor: default;
+}
+
+/* conteneur pour la section avec le nb de personnes et les bouttons de reservation */
+.bouttons-reservation{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/* la section avec le boutton reserver maintenant */
+div.bouttons-reservation div:last-of-type{
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+/* les deux premiers div avec les barres pour choisir le nombre dadultes et enfants */
+.nb-personnes{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    border-right: 1px solid #707070;
+    padding-right: 2vw;
+    margin-bottom: 20px;
+}
+
+div.nb-personnes:nth-of-type(2){
+    padding-left: 2vw;
+}
+
+.nb-personnes select{
+    margin-top: 20px;
+    width: 150px;
+}
+
+/* section "vous avez reserve du" */
+div.bouttons-reservation div:last-of-type div:first-of-type{
+    margin: 5px 0;
+}
+
+/* le boutton reserver maintenant */
+.bouttons-reservation button{
+    color: #E3FFFF;
+    background-color: #122E2E;
+}
+
+.reserver-maintenant{
+    cursor: pointer;
+    margin: 2vh 0;
+    font-size: 1.7rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 1px solid #707070;
+    border-radius: 5px;
+}
+
+.bouttons-reservation{
+    font-size: 1.3rem;
+}
+
+.bouttons-reservation input{
+    width: 175px;
+    margin-left: 10px;
+    text-align: left;
+}
+
+/* --- SECTION A PROPOS DE NOUS --- */
+/* conteneur principal */
+.a-propos-de-nous{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 90%;
+    margin-bottom: 25px;
+}
+
+/* texte explicatif sur la description de lhotel */
+.a-propos-de-nous span{
+    text-align: justify;
+    line-height: 1.6;
+    font-size: 1.5rem;
+    color: #141414;   
+}
+
+/* pour nous contacter */
+.a-propos-de-nous h3{
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+.pour-nous-contacter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* section avec le email telephone et telecopieur */
+.infos-contact{
+    margin-right: auto;
+    width: 100%;
+}
+
+.infos-contact div{
+    padding: 15px 0;
+}
+
+/* email telephone et telecopieur (premier mot) */
+.infos-contact div span:first-of-type{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* mettre une ligne entre chaque categorie */
+.infos-contact div:nth-of-type(2){
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+/* logos des reseaux sociaux */
+.reseaux-sociaux{
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    margin-left: 5vw;
+}
+
+.reseaux-sociaux span{
+    font-family: 'Roboto Slab', serif;
+}
+
+.reseaux-sociaux span{
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.logos-reseaux{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.logos-reseaux img{
+    margin-right: 10px;
+    width: 7vw;
+    height: 100%;
+}
+
+
+
+/* ===================== STYLES TELEPHONES ===================== */
+@media screen and (max-width: 576px){
+    /* h2 en general dans la page sont retrecis */
+    h2{
+        font-size: 1.5rem;
+    }
+
+    /* --- SECTION ALERTE COVID --- */
+    .alerte span{
+        font-size: 0.8rem;
+    }
+
+    /* --- SECTION NAV --- */
+    nav{
+        flex-direction: column;
+    }
+
+    nav a{
+        font-size: 1.1rem;
+    }
+
+    /* boutton burger */
+    nav input{
+        cursor: pointer;
+        z-index: 10;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        margin-left: 10px;
+        margin-top: 10px;
+        margin-right: auto;
+        color: #141414;
+    }
+
+    nav p{
+        position: absolute;
+        top: 1px;
+        left: 15px;
+        text-align: center;
+        font-size: 3rem;
+        padding: 0;
+        margin: 0;
+        color: white;
+        font-family:Arial, Helvetica, sans-serif;
+        z-index: 0;
+    }
+
+    nav p::after{
+        content: '\2261';
+    }
+
+    nav input:checked ~ p::after{
+        font-size: 2rem;
+        margin-left: 4px;
+        top: -3px;
+        content: 'X';
+    }
+
+    /* nom des sections du menu */
+    nav div:nth-of-type(1), nav div:nth-of-type(3){
+        flex-direction: column;
+        position: absolute;
+        align-items: center;
+        width: 150px;
+        height: auto;
+        transform-origin: 0% 0%;
+        color: #E1E1E1;
+        background-color: #141414;
+        -webkit-font-smoothing: antialiased;
+        box-shadow: 5px 0 5px -5px #333;
+        transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    }
+    nav div:nth-of-type(1) a, nav div:nth-of-type(3) a{
+        padding: 10px 40px;
+        transition-delay: 2s;
+    }
+
+
+    /* titre de lhotel */
+    nav div:nth-of-type(2){
+        width: 100%;
+        font-size: 1.2rem;
+        flex-direction: row;
+        justify-content: center;
+        order: -1;
+    }
+
+    nav div span{
+        font-size: 1.5rem;
+    }
+
+    nav div:nth-of-type(2) span:first-of-type{
+        margin: 0;
+        padding-top: 15px;
+        padding-right: 10px;
+    }
+
+    nav div:nth-of-type(2) span:last-of-type{
+        margin: 0;
+        padding-top: 15px;
+        margin-right: auto;
+    }
+
+    /* BOUTTONS DES IMAGES DE L'ACCUEIL */
+    .bouttons-images button{
+        height: 15px;
+        width: 15px;
+    }
+
+    /* --- SECTION ACCUEIL --- */
+    .images{
+        height: 35vh;
+    }
+
+    /* --- SECTION OU SE TROUVE NOTRE HOTEL --- */
+    .location h3, .location h4{
+        font-size: 1rem;
+    }
+
+    .metro img{
+        width: 5vw;
+        height: auto;
+    }
+
+    .location div.metro{
+        margin-bottom: 20px;
+    }
+
+    /* carte google maps */
+    #map{
+        height: 400px;
+    }
+
+    /* --- SECTION FAIRE UNE RESERVATION --- */
+    /* conteneur des calendriers + section du bas */
+    .gris-pale{
+        margin-bottom: 3vh;
+    }
+
+    /* les deux calendriers */
+    .les-calendriers{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* calendrier individuel */
+    .un-calendrier{
+        width: 90%;
+    }
+
+    .un-calendrier li{
+        font-size: 1rem;
+    }
+    
+    .un-calendrier .mois{
+        margin-bottom: 25px;
+    }
+
+    div.les-calendriers div.un-calendrier:first-of-type{
+        margin-bottom: 50px;
+    }
+
+    /* section du bas pour reserver */
+    .bouttons-reservation{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nb-personnes{
+        padding-left: 5vw;
+    }
+
+    .nb-personnes select{
+        width: 90px;
+        font-size: 1rem;
+    }
+
+    .nb-personnes span{
+        font-size: 1rem;
+    }
+
+    .bouttons-reservation{
+        font-size: 1rem;
+    }
+
+    div.bouttons-reservation div:last-of-type{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-left: 0;
+    }
+
+    div.bouttons-reservation div:last-of-type input{
+        font-size: 1rem;
+        width: 22vw;
+    }
+    
+    .reserver-maintenant{
+        font-size: 1.2rem;
+        align-self: flex-end;
+        margin-left: auto;
+    }
+
+    /* --- SECTION A PROPOS DE NOUS --- */
+    .a-propos-de-nous span{
+        font-size: 1rem;
+    }
+
+    .a-propos-de-nous h3{
+        font-size: 1.2rem;
+    }
+
+    .pour-nous-contacter{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .reseaux-sociaux{
+        margin-left: 0;
+        width: auto;
+    }
+
+    .reseaux-sociaux span{
+        font-size: 1.5rem;
+    }
+
+    .logos-reseaux img{
+        margin-right: 5px;
+        width: 15vw;
+    }
+}/* fin style telephone */
+
+
+
+/* ===================== STYLES MINI ECRANS TELEPHONES ===================== */
+@media screen and (max-width:420px){
+    /* email plus petit pour rentrer sur une ligne dans la page */
+    .infos-contact div:first-of-type span:last-of-type{
+        font-size: 0.7em;
+    }
+
+    /* titre de lhotel plus petit pour rentrer sur une ligne dans la page */
+    nav div span{
+        font-size: 1.2rem;
+    }
+}/* fin style mini ecrans telephone */
+
+
+
+/* ===================== STYLES TABLETTES ===================== */
+@media screen and (min-width: 576px) and (max-width: 991px){
+    /* taille des titres en general */
+    h2{
+        font-size: 2.5rem;
+    }
+
+    .a-propos-de-nous h3{
+        font-size: 1.8rem;
+    }
+
+    /* --- SECTION NAV --- */
+    /* cacher le boutton burger */
+    nav p, nav input{
+        display: none;
+    }
+
+    nav{
+        flex-wrap: wrap;
+    }
+
+    nav a{
+        font-size: 1.1rem;
+    }
+
+    nav div:nth-of-type(1){
+        width: 60%;
+        padding-bottom: 15px;
+    }
+
+    nav div:nth-of-type(3){
+        width: 40%;
+        padding-bottom: 15px;
+    }
+
+    nav div:nth-of-type(2){
+        flex-direction: row;
+        justify-content: center;
+        order: -1;
+    }
+
+    nav div span{
+        font-size: 1.8rem;
+    }
+
+    nav div:nth-of-type(2) span:first-of-type{
+        margin: 0;
+        padding-top: 15px;
+        padding-right: 10px;
+    }
+    nav div:nth-of-type(2) span:last-of-type{
+        margin: 0;
+        padding-top: 15px;
+    }
+
+    /* BOUTTONS DES IMAGES DE L'ACCUEIL */
+    .bouttons-images button{
+        height: 30px;
+        width: 30px;
+    }
+
+    /* --- SECTION ACCUEIL --- */
+    .images{
+        height: 70vh;
+    }
+    
+    /* SECTION FAIRE UNE RESERVATION */
+    /* carte google maps */
+    #map{
+        height: 500px;
+    }
+
+    /* FAIRE UNE RESERVATION */
+    /* les contenant des deux calendriers */
+    .les-calendriers{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* chaque calendrier individuel */
+    .un-calendrier{
+        width: 70%;
+    }
+
+    /* ajouter les deuxiemes et troisiemes lettres des jours de la semaine (de DIM, LUN... a SAM) */
+    .un-calendrier .jours-semaine li:nth-of-type(1)::after{
+        content: "IM";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(2)::after{
+        content: "UN";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(3)::after{
+        content: "AR";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(4)::after{
+        content: "ER";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(5)::after{
+        content: "EU";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(6)::after{
+        content: "EN";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(7)::after{
+        content: "AM";
+    }
+
+    .un-calendrier .mois{
+        margin-bottom: 25px;
+    }
+
+    div.les-calendriers div.un-calendrier:first-of-type{
+        margin-bottom: 50px;
+    }
+
+    /* section du bas avec les bouttons pour la reservation */
+    .bouttons-reservation{
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nb-personnes{
+        padding-left: 5vw;
+    }
+
+    div.bouttons-reservation div:last-of-type{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin-left: 0;
+    }
+
+    .reserver-maintenant{
+        align-self: flex-end;
+        margin-left: auto;
+    }
+
+    /* --- SECTION A PROPOS DE NOUS --- */
+    .a-propos-de-nous span{
+        font-size: 1.2rem;
+    }
+
+    .pour-nous-contacter{
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    .reseaux-sociaux{
+        margin-left: 0;
+        width: auto;
+    }
+
+    .reseaux-sociaux span{
+        font-size: 1.5rem;
+    }
+
+    .logos-reseaux img{
+        width: 10vw;
+    }
+}/* fin style tablette */
+
+/* ===================== STYLES GRANDS ECRANS ===================== */
+@media screen and (min-width: 992px){
+    /* --- SECTION NAV --- */
+    /* cacher le boutton burger */
+    nav p, nav input{
+        display: none;
+    }
+
+    /* ajouter les deuxiemes et troisiemes lettres des jours de la semaine (de DIM, LUN... a SAM) */
+    .un-calendrier .jours-semaine li:nth-of-type(1)::after{
+        content: "IM";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(2)::after{
+        content: "UN";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(3)::after{
+        content: "AR";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(4)::after{
+        content: "ER";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(5)::after{
+        content: "EU";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(6)::after{
+        content: "EN";
+    }
+    .un-calendrier .jours-semaine li:nth-of-type(7)::after{
+        content: "AM";
+    }
+}/* fin style grands ecrans */
